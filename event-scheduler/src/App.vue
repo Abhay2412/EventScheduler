@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <Header title="Event Scheduler"/>
+    <Header title="Event Scheduler" textColor="#5171A5"/>
   </div>
 </template>
 
