@@ -1,14 +1,15 @@
 <template>
   <div class="container">
-    <h1>First Vue.js Application</h1>
+    <Header title="Event Scheduler"/>
   </div>
 </template>
 
 <script>
-
+import Header from "./components/Header"
 export default {
   name: 'App',
   components: {
+    Header
   }
 }
 </script>
