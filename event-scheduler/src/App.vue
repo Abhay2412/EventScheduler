@@ -10,6 +10,27 @@ export default {
   name: 'App',
   components: {
     Header
+  },
+  data() {
+    return {
+      events: []
+    }
+  },
+  created() {
+    this.events = [
+      {
+        id: 1, 
+        text: "Tire Change Appointment",
+        day: "April 14th at 4:00PM",
+        reminder: true
+      },
+      {
+        id: 2, 
+        text: "Eye Checkup Appointment",
+        day: "April 25th at 1:00PM",
+        reminder: true
+      }
+    ]
   }
 }
 </script>
