@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Event Scheduler" textColor="#5171A5"/>
-    <Events @delete-event="deleteEvent" :events="events"/>
+    <Events @toggle-reminder="toggleReminder" @delete-event="deleteEvent" :events="events"/>
   </div>
 </template>
 
@@ -25,7 +25,10 @@ export default {
     deleteEvent(id) {
       if(confirm("Remove this event?"))
       this.events = this.events.filter((event) => event.id !== id)
-    }
+    },
+    toggleReminder(id) {
+      this.events = this.events.map((event) => event.id === id ? {...event, reminder: !event.reminder} : event)
+    },
   },
   created() {
     this.events = [
@@ -39,13 +42,13 @@ export default {
         id: 2, 
         text: "Eye Checkup Appointment",
         day: "April 25th at 1:00PM",
-        reminder: true
+        reminder: false
       },
       {
         id: 3, 
         text: "Friend Birthday",
         day: "July 7th at 12:00AM",
-        reminder: false
+        reminder: true
       }
     ]
   }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div :key="event.id" v-for="event in events">
-            <Event @delete-event="$emit('delete-event', event.id)" :event="event"/>
+            <Event @toggle-reminder="$emit('toggle-reminder', event.id)" @delete-event="$emit('delete-event', event.id)" :event="event"/>
         </div>
     </div>
 </template>
@@ -17,6 +17,6 @@ import Event from "./Event"
     components: {
         Event
     },
-    emits: ["delete-event"]
+    emits: ["delete-event", "toggle-reminder"]
  }
 </script>
