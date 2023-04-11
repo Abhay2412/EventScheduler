@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <Header title="Event Scheduler" textColor="#5171A5"/>
-    <Events :events="events" eventHeadingColor="#98B9AB"/>
+    <Events :events="events"/>
   </div>
 </template>
 

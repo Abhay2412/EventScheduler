@@ -1,17 +1,21 @@
 <template>
     <div>
         <div :key="event.id" v-for="event in events">
-            <h3 :style="{ color: eventHeadingColor}">{{ event.text }}</h3>
+            <Event :event="event"/>
         </div>
     </div>
 </template>
 
 <script>
+import Event from "./Event"
+
  export default {
     name: "Events",
     props: {
         events: Array,
-        eventHeadingColor: String,
+    },
+    components: {
+        Event
     },
  }
 </script>
