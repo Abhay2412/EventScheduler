@@ -1,15 +1,20 @@
 <template>
   <div class="container">
     <Header title="Event Scheduler" textColor="#5171A5"/>
+    <Events :events="events" eventHeadingColor="#98B9AB"/>
   </div>
 </template>
 
 <script>
 import Header from "./components/Header"
+import Events from "./components/Events"
+
 export default {
   name: 'App',
   components: {
-    Header
+    Header,
+    Events,
+
   },
   data() {
     return {
