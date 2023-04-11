@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <Header title="Event Scheduler" textColor="#5171A5"/>
+    <AddEvent @add-event="addEvent"/>
     <Events @toggle-reminder="toggleReminder" @delete-event="deleteEvent" :events="events"/>
   </div>
 </template>
@@ -8,12 +9,14 @@
 <script>
 import Header from "./components/Header"
 import Events from "./components/Events"
+import AddEvent from "./components/AddEvent"
 
 export default {
   name: 'App',
   components: {
     Header,
     Events,
+    AddEvent,
 
   },
   data() {
@@ -22,6 +25,9 @@ export default {
     }
   },
   methods: {
+    addEvent(event) {
+      this.events = [...this.events, event]
+    },
     deleteEvent(id) {
       if(confirm("Remove this event?"))
       this.events = this.events.filter((event) => event.id !== id)
@@ -76,7 +82,7 @@ body {
 }
 .btn {
   display: inline-block;
-  background: #000;
+  background: #9BC995;
   color: #fff;
   border: none;
   padding: 10px 20px;
