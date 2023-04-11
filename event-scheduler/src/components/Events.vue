@@ -1,7 +1,7 @@
 <template>
     <div>
         <div :key="event.id" v-for="event in events">
-            <Event :event="event"/>
+            <Event @delete-event="$emit('delete-event', event.id)" :event="event"/>
         </div>
     </div>
 </template>
@@ -17,5 +17,6 @@ import Event from "./Event"
     components: {
         Event
     },
+    emits: ["delete-event"]
  }
 </script>
