@@ -1,7 +1,9 @@
 <template>
   <div class="container">
-    <Header title="Event Scheduler" textColor="#5171A5"/>
-    <AddEvent @add-event="addEvent"/>
+    <Header @toggle-add-event="toggleAddEvent" title="Event Scheduler" :showAddEvent="showAddEvent" textColor="#5171A5"/>
+    <div v-if="showAddEvent">
+      <AddEvent @add-event="addEvent"/>
+    </div>
     <Events @toggle-reminder="toggleReminder" @delete-event="deleteEvent" :events="events"/>
   </div>
 </template>
@@ -21,10 +23,14 @@ export default {
   },
   data() {
     return {
-      events: []
+      events: [],
+      showAddEvent: false
     }
   },
   methods: {
+    toggleAddEvent() {
+      this.showAddEvent = !this.showAddEvent
+    },
     addEvent(event) {
       this.events = [...this.events, event]
     },

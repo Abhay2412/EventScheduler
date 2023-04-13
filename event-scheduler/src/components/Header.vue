@@ -1,7 +1,7 @@
 <template>
     <header>
         <h1 :style="{color: textColor}">{{ title }}</h1>
-        <Button text="Add Event" color="#9BC995"/>
+        <Button @btn-click="$emit('toggle-add-event')" :text="showAddEvent ? 'Close' : 'Add Event'" :color="showAddEvent ? '#FF8080' : '#9BC995'"/>
     </header>
 </template>
 
@@ -11,7 +11,8 @@ export default {
     name: "Header",
     props: {
         title: String,
-        textColor: String
+        textColor: String,
+        showAddEvent: Boolean,
     },
     components: {
         Button
