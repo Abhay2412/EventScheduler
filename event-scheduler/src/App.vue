@@ -31,38 +31,61 @@ export default {
     toggleAddEvent() {
       this.showAddEvent = !this.showAddEvent
     },
-    addEvent(event) {
-      this.events = [...this.events, event]
+    async addEvent(event) {
+      const response = await fetch("api/events", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify(event),
+      })
+      
+      const data = await response.json()
+
+      this.events = [...this.events, data]
     },
-    deleteEvent(id) {
-      if(confirm("Remove this event?"))
-      this.events = this.events.filter((event) => event.id !== id)
+    async deleteEvent(id) {
+      if(confirm("Remove this event?")) {
+        const response = await fetch(`api/events/${id}`, {
+          method: "DELETE"
+        })
+
+        response.status === 200 ? (this.events = this.events.filter((event) => event.id !== id)) : alert("Error deleting in event")
+      }
     },
-    toggleReminder(id) {
-      this.events = this.events.map((event) => event.id === id ? {...event, reminder: !event.reminder} : event)
+    async toggleReminder(id) {
+      const eventToToggle = await this.fetchEvent(id)
+      const updateEvent = {...eventToToggle, reminder: !eventToToggle.reminder}
+
+      const response = await fetch(`api/events/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(updateEvent)
+      })
+      
+      const data = await response.json()
+
+      this.events = this.events.map((event) => event.id === id ? {...event, reminder: data.reminder} : event)
+    },
+    async fetchEvents() {
+      const response = await fetch("api/events")
+
+      const data = await response.json()
+
+      return data
+    },
+    async fetchEvent(id) {
+      const response = await fetch(`api/events/${id}`)
+
+      const data = await response.json()
+
+      return data
     },
   },
-  created() {
-    this.events = [
-      {
-        id: 1, 
-        text: "Tire Change Appointment",
-        day: "April 14th at 4:00PM",
-        reminder: true
-      },
-      {
-        id: 2, 
-        text: "Eye Checkup Appointment",
-        day: "April 25th at 1:00PM",
-        reminder: false
-      },
-      {
-        id: 3, 
-        text: "Friend Birthday",
-        day: "July 7th at 12:00AM",
-        reminder: true
-      }
-    ]
+  async created() {
+    this.events = await this.fetchEvents()
   }
 }
 </script>
