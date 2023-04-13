@@ -25,3 +25,6 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Color Scheme
+The color scheme used for inspiration: https://coolors.co/9bc995-98b9ab-5171a5-3f3047-eef36a 
