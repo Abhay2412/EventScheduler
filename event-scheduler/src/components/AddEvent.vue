@@ -49,7 +49,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .add-form {
   margin-bottom: 40px;
   color: #896B9A;
