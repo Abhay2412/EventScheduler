@@ -1,7 +1,5 @@
 <template>
-    <div v-if="showAddEvent">
-      <AddEvent @add-event="addEvent"/>
-    </div>
+    <AddEvent v-if="showAddEvent" @add-event="addEvent"/>
     <Events @toggle-reminder="toggleReminder" @delete-event="deleteEvent" :events="events"/>
 </template>
 
